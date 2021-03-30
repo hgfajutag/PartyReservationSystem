@@ -1,9 +1,7 @@
-# MPPPROJECTAIRLINE
-ARS
+# Party Reservation System
+PRS
 
-Air Reservation Online 
-
-Small App to help manage Air Reservation
+Small App to Host Secret Parties
 
 App Build Java and UI via JavaFX 
 
@@ -53,21 +51,13 @@ https://www.eclipse.org/downloads
 ```
 3.3 Some Account For Testing.
 
-```sh
-
-//				passanger  => Email : hannap_12@gmail.com   Passwrod : 12
-//				agent      => Email : ayoub_12@gmail.com	Passwrod : 12
-//				admin      => Email : alba_12@gmail.com	    Passwrod : 12
-```
-
 4 Project Team 
 ```sh
-Ayoub Lachhab 
-
-Hannah Gail Ruba Fajutag 
-
-Alba Elizabeth Padilla Pacheco
-
+1. Hannah Gail Ruba Fajutag
+2. Danyal Javed
+3. Alba Elizabeth Padilla Pacheco
+4. Angie Lucero MartinezDuarte
+5. Uulen Usukhbayar
 ```
 
 
