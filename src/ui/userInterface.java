@@ -33,7 +33,7 @@ public class userInterface extends Application {
 	ReservationSystemFacade dataSource = new ReservationSystemFacadeImpl();
 	RadioButton host = new RadioButton("Host");
 	RadioButton guest = new RadioButton("Guest");
-	RadioButton makeReservation = new RadioButton("Make Reservation");
+	RadioButton requestReservation = new RadioButton("Request Reservation");
 
 	TextField id = new TextField();
 	TextField idPass = new TextField();
