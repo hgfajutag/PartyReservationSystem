@@ -9,7 +9,7 @@ import object.Place; //Aiport
 import object.PartyInstance; //PartyInstance
 import object.Guest;
 import object.Reservation;
-import object.Ticket;
+import object.Pass;
 
 public interface ReservationSystemFacade {
 	
@@ -28,7 +28,7 @@ public interface ReservationSystemFacade {
 	Reservation createReservation(String passenger, List<PartyInstance> PartyInstances); // Passenger reserves
 	Reservation createReservation(String agent, String passenger, List<PartyInstance> PartyInstances); // Agent reserves
 	
-	List<Ticket> confirmReservation(String reservationCode);	
+	List<Pass> confirmReservation(String reservationCode);	
 	boolean cancelReservation(String reservationCode);
 	List<Reservation> findReservationsByAgentId(String passengerId);
 	

@@ -13,7 +13,7 @@ public class PartyInstance {
 	private List<Crew> crew = new ArrayList<>();
 	private List<Pilot> pilots = new ArrayList<>();
 	private List<Reservation> reservations = new ArrayList<>();
-	private List<Ticket> tickets = new ArrayList<>();
+	private List<Pass> passes = new ArrayList<>();
 
 	public PartyInstance(String id, Location locations, LocalDate date) {	
 		this.id = id;
@@ -70,12 +70,12 @@ public class PartyInstance {
 		this.reservations = reservations;
 	}
 	
-	public List<Ticket> getTickets() {
-		return tickets;
+	public List<Pass> getPasses() {
+		return passes;
 	}
 	
-	public void addTicket(Ticket ticket) {
-		this.tickets.add(ticket);
+	public void addTicket(Pass pass) {
+		this.passes.add(pass);
 	}
 
 
