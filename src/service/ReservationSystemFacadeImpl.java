@@ -35,13 +35,13 @@ public class ReservationSystemFacadeImpl implements ReservationSystemFacade {
 	}
 	
 	@Override
-	public List<Party> findPartysByPlaceCode(String PlaceCode) {
+	public List<Party> findPartiesByPlaceCode(String PlaceCode) {
 		List<Party> res = new ArrayList<Party>();
 		for (Place Place : dataSource.getPlaces()) {
 			if (Place.getCode().equalsIgnoreCase(PlaceCode)) {
-				List<Party> Partys = Place.getPartys();
+				List<Party> Parties = Place.getPartys();
 				
-				res.addAll(Partys);
+				res.addAll(Parties);
 			}
 		}
 		return res;
@@ -64,9 +64,9 @@ public class ReservationSystemFacadeImpl implements ReservationSystemFacade {
             LocalDate date)  
     {
         List<PartyInstance> res = new ArrayList<PartyInstance>();
-        for (PartyInstance flighte : dataSource.getPartyInstances()) {
-            String dep = flighte.getFlight().getDeparturePlace().getCode();
-            String arv = flighte.getFlight().getArrivalPlace().getCode();
+        for (PartyInstance flighte : dataSource.getPartiesInstances()) {
+            String dep = flighte.getLocation().getDeparturePlace().getCode();
+            String arv = flighte.getLocation().getArrivalPlace().getCode();
             LocalDate dateV=flighte.getDate();
             
        if ((departurePlaceCode.equalsIgnoreCase(dep)) && (arrivalPlaceCode.equals(arv)&& dateV.equals(date))) {
@@ -77,10 +77,10 @@ public class ReservationSystemFacadeImpl implements ReservationSystemFacade {
     }
 	
 	@Override
-    public List<Reservation> findReservationsByPassengerId(String passengerId) {
+    public List<Reservation> findReservationsByGuestId(String guestId) {
         List<Reservation> res = new ArrayList<>();
         for (Reservation r : dataSource.getReservations()) {
-            if (r.getPassenger().getId().equalsIgnoreCase(passengerId)) {
+            if (r.getGuest().getId().equalsIgnoreCase(guestId)) {
                 res.add(r);
             }
         }
@@ -103,21 +103,21 @@ public class ReservationSystemFacadeImpl implements ReservationSystemFacade {
     }
 
     @Override
-    public List<Guest> findPassengersByHostCode(String HostCode) {
-        List<Guest> psgr = new ArrayList<>();
+    public List<Guest> findGuestsByHostCode(String HostCode) {
+        List<Guest> guest = new ArrayList<>();
         for (Reservation res : dataSource.getReservations()) {
             if (res.getHost() != null && res.getHost().getId().equalsIgnoreCase(HostCode)) {
-                if (!psgr.contains(res.getPassenger())) {
-                    psgr.add(res.getPassenger());
+                if (!guest.contains(res.getGuest())) {
+                    guest.add(res.getGuest());
                 }
             }
         }
-        return psgr;
+        return guest;
     }
 	
 		
 	@Override
-	public List<Ticket> confirmReservation(String reservationCode) {
+	public List<Pass> confirmReservation(String reservationCode) {
 		Reservation reservation=null;
 		for (Reservation reservation1 : dataSource.getReservations()) {			
 			if (reservation1.getReservationCode().equalsIgnoreCase(reservationCode)) {
@@ -128,7 +128,7 @@ public class ReservationSystemFacadeImpl implements ReservationSystemFacade {
 		if(reservation!=null) {
 			reservation.setConfirmed(true);
 		}
-		return reservation.getTickets();
+		return reservation.getPasses();
 	}
 
 	@Override
@@ -147,10 +147,10 @@ public class ReservationSystemFacadeImpl implements ReservationSystemFacade {
     public Reservation createReservation(String pId, List<PartyInstance> PartyInstances) {
         Reservation reservation = new Reservation();
        
-        Guest passenger = getPassengerById(pId);
+        Guest guest = getGuestById(pId);
         
-        if (passenger != null) {
-            ReservationFactory.buildAReservation(reservation, passenger, null, PartyInstances);
+        if (guest != null) {
+            ReservationFactory.buildAReservation(reservation, guest, null, PartyInstances);
             dataSource.getReservations().add(reservation);
             return reservation;
         }
@@ -158,8 +158,8 @@ public class ReservationSystemFacadeImpl implements ReservationSystemFacade {
         return null;       
     }
    
-    private Guest getPassengerById(String pID) {
-        for (Guest p : dataSource.getPassengers()) {
+    private Guest getGuestById(String pID) {
+        for (Guest p : dataSource.getGuests()) {
             if (p.getId().equalsIgnoreCase(pID)) {
                 return p;
             }
@@ -182,10 +182,10 @@ public class ReservationSystemFacadeImpl implements ReservationSystemFacade {
         Reservation reservation = new Reservation();
        
         Host Host = getHostById(HostId);
-        Guest passenger = getPassengerById(pID);
+        Guest passenger = getGuestById(pID);
        
-        if (Host != null && passenger != null) {
-            ReservationFactory.buildAReservation(reservation, passenger, Host, PartyInstances);
+        if (Host != null && guest != null) {
+            ReservationFactory.buildAReservation(reservation, guest, Host, PartyInstances);
             dataSource.getReservations().add(reservation);
             return reservation;
         }       

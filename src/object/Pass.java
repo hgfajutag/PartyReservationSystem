@@ -6,7 +6,7 @@ public class Pass {
 	
 	private String id;
 	private String number;
-	private Guest passenger;
+	private Guest guest;
 	
 	private Reservation reservation;
 	private PartyInstance PartyInstance;	
@@ -14,7 +14,7 @@ public class Pass {
 	public Pass(Guest passenger) {
 		this.id = UUID.randomUUID().toString();
 		this.number = UUID.randomUUID().toString();
-		this.passenger = passenger;
+		this.guest = guest;
 	}
 	
 	public String getId() {
@@ -49,17 +49,17 @@ public class Pass {
 		this.PartyInstance = PartyInstance;
 	}
 	
-	public Guest getPassenger() {
-		return passenger;
+	public Guest getGuest() {
+		return guest;
 	}
 	
-	public void setPassenger(Guest passenger) {
-		this.passenger = passenger;
+	public void setPassenger(Guest guest) {
+		this.guest = guest;
 	}
 	
 	@Override
 	public String toString() {
-		return "Pass [id=" + id + ", number=" + number + ", passenger=" + passenger + ", PartyInstance="
+		return "Pass [id=" + id + ", number=" + number + ", guest=" + guest + ", PartyInstance="
 				+ PartyInstance + "]";
 	}
 

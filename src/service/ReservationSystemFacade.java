@@ -20,17 +20,17 @@ public interface ReservationSystemFacade {
 	List<Place> findPlacesByCity(String city); // Place(s) of a city, e.g. Chicago has two major Places	
 	List<Party> findPartysByPlaceCode(String PlaceCode);
 	
-	List<PartyInstance> findFlightsFromTo(String departurePlaceCode, String arrivalPlaceCode, LocalDate date);	
-	List<Reservation> findReservationsByPassengerId(String passengerId);
+	List<PartyInstance> findLocationsFromTo(String departurePlaceCode, String arrivalPlaceCode, LocalDate date);	
+	List<Reservation> findReservationsByGuestId(String guestId);
 	
-	List<Guest> findPassengersByAgentCode(String agentCode);	
+	List<Guest> findPassengersByHostCode(String hostCode);	
 	
-	Reservation createReservation(String passenger, List<PartyInstance> PartyInstances); // Passenger reserves
-	Reservation createReservation(String agent, String passenger, List<PartyInstance> PartyInstances); // Agent reserves
+	Reservation createReservation(String guest, List<PartyInstance> PartyInstances); // Guest reserves
+	Reservation createReservation(String host, String guest, List<PartyInstance> PartyInstances); // Host reserves
 	
 	List<Pass> confirmReservation(String reservationCode);	
 	boolean cancelReservation(String reservationCode);
-	List<Reservation> findReservationsByAgentId(String passengerId);
+	List<Reservation> findReservationsByHostId(String guestId);
 	
 	
 }
