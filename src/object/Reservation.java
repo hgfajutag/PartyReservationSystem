@@ -6,10 +6,10 @@ import java.util.UUID;
 
 public class Reservation {
 	private String reservationCode;
-	private Guest passenger;
-	private Host agent;
+	private Guest guest;
+	private Host host;
 	private boolean confirmed=false;
-	private List<FlightInstance> flightsinstances = new ArrayList<FlightInstance>();
+	private List<PartyInstance> partyinstances = new ArrayList<PartyInstance>();
 	private List<Ticket> tickets = new ArrayList<Ticket>();
 	
 	public Reservation() {
@@ -32,28 +32,28 @@ public class Reservation {
 		this.reservationCode = reservationCode;
 	}
 
-	public Guest getPassenger() {
-		return passenger;
+	public Guest getguest() {
+		return guest;
 	}
 
-	public void setPassenger(Guest passenger) {
-		this.passenger = passenger;
+	public void setguest(Guest guest) {
+		this.guest = guest;
 	}
 
-	public Host getAgent() {
-		return agent;
+	public Host gethost() {
+		return host;
 	}
 
-	public void setAgents(Host agent) {
-		this.agent = agent;
+	public void sethosts(Host host) {
+		this.host = host;
 	}
 
-	public List<FlightInstance> getFlightsinstances() {
-		return flightsinstances;
+	public List<PartyInstance> getpartyinstances() {
+		return partyinstances;
 	}
 
-	public void setFlightsinstances(List<FlightInstance> flightsinstances) {
-		this.flightsinstances = flightsinstances;
+	public void setpartyinstances(List<PartyInstance> partyinstances) {
+		this.partyinstances = partyinstances;
 	}
 
 	public List<Ticket> getTickets() {
@@ -64,16 +64,16 @@ public class Reservation {
 		this.tickets.add(ticket);
 	}
 	
-	public void addFlightInstance(FlightInstance flightInstance) {
-		this.flightsinstances.add(flightInstance);
+	public void addPartyInstance(PartyInstance PartyInstance) {
+		this.partyinstances.add(PartyInstance);
 	}
 	
 	@Override
 	public String toString() {
 		
 		return "Reservation [confirmed="+ confirmed + " ,reservationCode=" + reservationCode + ", "
-				+ "passenger=" + passenger.getFirstName() + " " + passenger.getLastName() + ", "
-				+ "agent=" + (agent==null?"null":agent.getId()) + "]";
+				+ "guest=" + guest.getFirstName() + " " + guest.getLastName() + ", "
+				+ "host=" + (host==null?"null":host.getId()) + "]";
 	}
 
 

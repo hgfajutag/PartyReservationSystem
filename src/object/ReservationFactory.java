@@ -5,27 +5,27 @@ import java.util.List;
 public class ReservationFactory {
 	
 	public static Reservation buildAReservation(Reservation reservation,
-			Guest passenger,
-            Host agent,
+			Guest guest,
+            Host host,
            
-            List<FlightInstance> flightInstances           
+            List<PartyInstance> PartyInstances           
             ) {
        
-        //link reservation and passenger
-        reservation.setPassenger(passenger);
-        passenger.addReservation(reservation);
+        //link reservation and guest
+        reservation.setguest(guest);
+        guest.addReservation(reservation);
        
-        //link reservation and agent
-        if(agent!=null) {
-        reservation.setAgents(agent);
-        agent.addReservation(reservation); }      
+        //link reservation and host
+        if(host!=null) {
+        reservation.sethosts(host);
+        host.addReservation(reservation); }      
        
-        //link reservation and FlightInstance
-        reservation.setFlightsinstances(flightInstances);
+        //link reservation and PartyInstance
+        reservation.setpartyinstances(PartyInstances);
        
         //generate ticket and link them all
-        for (FlightInstance flightInstance : flightInstances) {
-            TicketFactory.buildTicket(passenger, reservation, flightInstance);
+        for (PartyInstance PartyInstance : PartyInstances) {
+            TicketFactory.buildTicket(guest, reservation, PartyInstance);
         }
        
        

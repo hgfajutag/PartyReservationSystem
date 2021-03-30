@@ -3,30 +3,30 @@ package service;
 import java.time.LocalDate;
 import java.util.List;
 
-import object.Agent;
-import object.Airline;
-import object.Airport;
-import object.FlightInstance;
-import object.Passenger;
+import object.Host;
+import object.Party; //Airline
+import object.Place; //Aiport
+import object.PartyInstance; //PartyInstance
+import object.Guest;
 import object.Reservation;
 import object.Ticket;
 
 public interface ReservationSystemFacade {
 	
-	List<Airport> findAllAirports();	
-	Airport findAirportByAirportCode(String airportCode);
+	List<Place> findAllPlaces();	
+	Place findPlaceByPlaceCode(String PlaceCode);
 	
 	
-	List<Airport> findAirportsByCity(String city); // Airport(s) of a city, e.g. Chicago has two major airports	
-	List<Airline> findAirlinesByAirportCode(String airportCode);
+	List<Place> findPlacesByCity(String city); // Place(s) of a city, e.g. Chicago has two major Places	
+	List<Party> findPartysByPlaceCode(String PlaceCode);
 	
-	List<FlightInstance> findFlightsFromTo(String departureAirPortCode, String arrivalAirportCode, LocalDate date);	
+	List<PartyInstance> findFlightsFromTo(String departurePlaceCode, String arrivalPlaceCode, LocalDate date);	
 	List<Reservation> findReservationsByPassengerId(String passengerId);
 	
-	List<Passenger> findPassengersByAgentCode(String agentCode);	
+	List<Guest> findPassengersByAgentCode(String agentCode);	
 	
-	Reservation createReservation(String passenger, List<FlightInstance> flightInstances); // Passenger reserves
-	Reservation createReservation(String agent, String passenger, List<FlightInstance> flightInstances); // Agent reserves
+	Reservation createReservation(String passenger, List<PartyInstance> PartyInstances); // Passenger reserves
+	Reservation createReservation(String agent, String passenger, List<PartyInstance> PartyInstances); // Agent reserves
 	
 	List<Ticket> confirmReservation(String reservationCode);	
 	boolean cancelReservation(String reservationCode);

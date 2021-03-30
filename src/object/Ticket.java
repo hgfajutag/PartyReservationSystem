@@ -9,7 +9,7 @@ public class Ticket {
 	private Guest passenger;
 	
 	private Reservation reservation;
-	private FlightInstance flightinstance;	
+	private PartyInstance PartyInstance;	
 	
 	public Ticket(Guest passenger) {
 		this.id = UUID.randomUUID().toString();
@@ -41,12 +41,12 @@ public class Ticket {
 		this.reservation = reservation;
 	}
 	
-	public FlightInstance getFlightinstance() {
-		return flightinstance;
+	public PartyInstance getPartyInstance() {
+		return PartyInstance;
 	}
 	
-	public void setFlightinstance(FlightInstance flightinstance) {
-		this.flightinstance = flightinstance;
+	public void setPartyInstance(PartyInstance PartyInstance) {
+		this.PartyInstance = PartyInstance;
 	}
 	
 	public Guest getPassenger() {
@@ -59,8 +59,8 @@ public class Ticket {
 	
 	@Override
 	public String toString() {
-		return "Ticket [id=" + id + ", number=" + number + ", passenger=" + passenger + ", flightinstance="
-				+ flightinstance + "]";
+		return "Ticket [id=" + id + ", number=" + number + ", passenger=" + passenger + ", PartyInstance="
+				+ PartyInstance + "]";
 	}
 
 

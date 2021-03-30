@@ -3,16 +3,16 @@ package object;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Airport {
+public class Place {
 	private String id;
 	private String code;
 	private String name;
 	private Address address;
 	
-	private List<Flight> flights = new ArrayList<>();
-	private List<Airline> airlines = new ArrayList<>();
+	private List<Location> location = new ArrayList<>();
+	private List<Party> Partys = new ArrayList<>();
 	
-	public Airport(String id, String code, String name, Address address) {
+	public Place(String id, String code, String name, Address address) {
 		this.id = id;
 		this.code = code;
 		this.name = name;
@@ -51,34 +51,35 @@ public class Airport {
 		this.address = address;
 	}
 
-	public List<Flight> getFlights() {
-		return flights;
+	public List<Location> getlocation() {
+		return location;
 	}
 
-	public void setFlights(List<Flight> flights) {
-		this.flights = flights;
+	public void setlocation(List<Location> location) {
+		this.location = location;
 	}
 
-	public List<Airline> getAirlines() {
-		return airlines;
+	public List<Party> getPartys() {
+		return Partys;
 	}
 
-	public void setAirlines(List<Airline> airlines) {
-		this.airlines = airlines;
+	public void setPartys(List<Party> Partys) {
+		this.Partys = Partys;
 	}
 	
-	public void addAirLine(Airline airline) {
-		this.airlines.add(airline);
+	public void addParty(Party Party) {
+		this.Partys.add(Party);
 	}
 	
-	public void addFlight(Flight flight) {
-		this.flights.add(flight);
+	public void addLocation(Location Location) {
+		this.location.add(Location);
 	}
 
 	@Override
 	public String toString() {
-		return "Airport [id=" + id + ", code=" + code + ", name=" + name + ", address=" + address + "]";
-	}	
+		return "Place [id=" + id + ", code=" + code + ", name=" + name + ", address=" + address + "]";
+	}
+	
 	
 	
 	

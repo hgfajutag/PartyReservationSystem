@@ -4,19 +4,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlightInstance {
+public class PartyInstance {
 
 	private String id;
-	private Flight flight;
+	private Location locations;
 	private LocalDate date;
 	
-;
+	private List<Crew> crew = new ArrayList<>();
+	private List<Pilot> pilots = new ArrayList<>();
 	private List<Reservation> reservations = new ArrayList<>();
 	private List<Ticket> tickets = new ArrayList<>();
 
-	public FlightInstance(String id, Flight flight, LocalDate date) {	
+	public PartyInstance(String id, Location locations, LocalDate date) {	
 		this.id = id;
-		this.flight = flight;
+		this.locations = locations;
 		this.date = date;
 	}
 	
@@ -29,12 +30,12 @@ public class FlightInstance {
 		this.id = id;
 	}
 	
-	public Flight getFlight() {
-		return flight;
+	public Location getlocations() {
+		return locations;
 	}
 	
-	public void setFlight(Flight flight) {
-		this.flight = flight;
+	public void setlocations(Location locations) {
+		this.locations = locations;
 	}
 	
 	public LocalDate getDate() {
@@ -45,6 +46,21 @@ public class FlightInstance {
 		this.date = date;
 	}
 	
+	public List<Crew> getCrew() {
+		return crew;
+	}
+	
+	public void setCrew(List<Crew> crew) {
+		this.crew = crew;
+	}
+	
+	public List<Pilot> getPilot() {
+		return pilots;
+	}
+	
+	public void setPilot(List<Pilot> pilots) {
+		this.pilots = pilots;		
+	}
 	
 	public List<Reservation> getReservations() {
 		return reservations;
@@ -65,7 +81,7 @@ public class FlightInstance {
 
 	@Override
 	public String toString() {
-		return "FlightInstance [id=" + id + ", flight=" + flight + ", date=" + date + "]";
+		return "PartyInstance [id=" + id + ", locations=" + locations + ", date=" + date + "]";
 	}
 
 

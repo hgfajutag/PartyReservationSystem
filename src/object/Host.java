@@ -18,7 +18,7 @@ public class Host extends User {
 	
 	@Override
 	public String toString() {
-		return "Agent [ " + super.toString();
+		return "Host [ " + super.toString();
 	}
 
 	public void addReservation(Reservation reservation) {
