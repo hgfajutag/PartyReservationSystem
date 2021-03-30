@@ -74,7 +74,7 @@ public class PartyInstance {
 		return passes;
 	}
 	
-	public void addTicket(Pass pass) {
+	public void addPass(Pass pass) {
 		this.passes.add(pass);
 	}
 

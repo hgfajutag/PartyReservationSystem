@@ -25,7 +25,7 @@ public class ReservationFactory {
        
         //generate ticket and link them all
         for (PartyInstance PartyInstance : PartyInstances) {
-            TicketFactory.buildTicket(guest, reservation, PartyInstance);
+           PassFactory.buildPass(guest, reservation, PartyInstance);
         }
        
        

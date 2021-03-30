@@ -1,9 +1,9 @@
 package object;
 
 public class PassFactory {
-	public static Pass buildPass(Guest passenger, Reservation reservation, PartyInstance PartyInstance) {
-        Pass pass = new Pass(passenger);       
-        passenger.addPass(pass);
+	public static Pass buildPass(Guest guest, Reservation reservation, PartyInstance PartyInstance) {
+        Pass pass = new Pass(guest);       
+        guest.addPass(pass);
        
         pass.setReservation(reservation);
         reservation.addPass(pass);

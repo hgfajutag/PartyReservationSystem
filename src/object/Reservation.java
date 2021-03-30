@@ -10,7 +10,7 @@ public class Reservation {
 	private Host host;
 	private boolean confirmed=false;
 	private List<PartyInstance> partyinstances = new ArrayList<PartyInstance>();
-	private List<Ticket> tickets = new ArrayList<Ticket>();
+	private List<Pass> passes = new ArrayList<Pass>();
 	
 	public Reservation() {
 		this.reservationCode = UUID.randomUUID().toString();
@@ -56,12 +56,12 @@ public class Reservation {
 		this.partyinstances = partyinstances;
 	}
 
-	public List<Ticket> getTickets() {
-		return tickets;
+	public List<Pass> getPasses() {
+		return passes;
 	}
 
-	public void addTicket(Ticket ticket) {
-		this.tickets.add(ticket);
+	public void addPass(Pass pass) {
+		this.passes.add(pass);
 	}
 	
 	public void addPartyInstance(PartyInstance PartyInstance) {

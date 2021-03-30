@@ -7,7 +7,7 @@ import java.util.List;
 public class Guest extends User{
 	
 	private List<Reservation> reservations = new ArrayList<>();
-	private List<Ticket> tickets = new ArrayList<>();
+	private List<Pass> passes = new ArrayList<>();
 	
 	
 	public Guest(String id, String firstName, String lastName, String email, LocalDate dateOfbirth, Address address) {
@@ -19,11 +19,11 @@ public class Guest extends User{
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
-	public List<Ticket> getTickets() {
-		return tickets;
+	public List<Pass> getPasses() {
+		return passes;
 	}
-	public void addTicket(Ticket ticket) {
-		this.tickets.add(ticket);
+	public void addPass(Pass pass) {
+		this.passes.add(pass);
 	}
 	
 	public void addReservation(Reservation reservation) {
