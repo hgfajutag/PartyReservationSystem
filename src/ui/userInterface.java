@@ -31,8 +31,8 @@ import javafx.stage.Stage;
 
 public class userInterface extends Application {
 	ReservationSystemFacade dataSource = new ReservationSystemFacadeImpl();
-	RadioButton agent = new RadioButton("Agent");
-	RadioButton passenger = new RadioButton("Passenger");
+	RadioButton host = new RadioButton("Host");
+	RadioButton guest = new RadioButton("Guest");
 	RadioButton makeReservation = new RadioButton("Make Reservation");
 
 	TextField id = new TextField();
