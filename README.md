@@ -53,15 +53,11 @@ https://www.eclipse.org/downloads
 
 4 Project Team 
 ```sh
-1. Hannah Gail Ruba Fajutag
-2. Danyal Javed
-3. Alba Elizabeth Padilla Pacheco
-4. Angie Lucero MartinezDuarte
-5. Uulen Usukhbayar
+    1. Alba Elizabeth Padilla Pacheco
+    2. Angie Lucero MartinezDuarte
+    3. Hannah Gail Ruba Fajutag
+    4. Uulen Usukhbayar
+    5.  Danyal Javed
 ```
 
 
-5 Demonstration of the application
-```sh
-https://youtu.be/ruw07eGJNIo
-```
