@@ -59,18 +59,18 @@ public class userInterface extends Application {
 		stage.setTitle("Address Form");
 		stage.getIcons().add(new Image("/ui/icon.png"));
 /////////////////////////////////////
-		Button btShowAirPort = new Button("Airports");
-		Button btViewlistairlines = new Button("Airlines by Airports");
-		Button btViewlistflights = new Button("Flights");
+		Button btShowPlace = new Button("Place");
+		Button btViewlistparty = new Button("Parties by Place");
+		Button btViewlistlocation = new Button("Location");
 		Button btmyreservations = new Button("Reservations");
-		Button btMakeReservation = new Button("Make a reservation");
+		Button btrequestReservation = new Button("Request a reservation");
 		Button btCancelReservation = new Button("Cancel a Reservation");
-		Button btmypassenger = new Button("Passengers ");
+		Button btmyguest = new Button("Guest ");
 		Button btConfirmeReservation = new Button("Confirm Reservation");
 
 		final ToggleGroup group = new ToggleGroup();
-		agent.setToggleGroup(group);
-		passenger.setToggleGroup(group);
+		host.setToggleGroup(group);
+		guest.setToggleGroup(group);
 ///////////////////////////////////////
 		BorderPane bPane = new BorderPane();
 		FlowPane flowpane1 = new FlowPane();
@@ -80,9 +80,9 @@ public class userInterface extends Application {
 ////////////////////////////////////////
 		GridPane gridP = new GridPane();
 		gridP.setPadding(new Insets(7, 7, 7, 7));
-		gridP.add(agent, 0, 0);
-		gridP.add(passenger, 0, 1);
-		gridP.add(makeReservation, 0, 2);
+		gridP.add(host, 0, 0);
+		gridP.add(guest, 0, 1);
+		gridP.add(requestReservation, 0, 2);
 
 /////////////////////////////////////////
 		GridPane grid = new GridPane();
@@ -92,7 +92,7 @@ public class userInterface extends Application {
 /////////////////////////////////////////
 		GridPane grid0 = new GridPane();
 		grid0.setPadding(new Insets(7, 7, 7,7));
-		grid0.add(new Text("ID Passenger"), 0, 0);
+		grid0.add(new Text("ID Guest"), 0, 0);
 		grid0.add(idPass, 0, 1);
 /////////////////////////////////////////
 		GridPane grid1 = new GridPane();
@@ -139,11 +139,11 @@ public class userInterface extends Application {
 		btMakeReservation.setVisible(false);
 
 ////////////////////////////////////////
-		flowpane2.getChildren().add(btShowAirPort);
-		flowpane2.getChildren().add(btViewlistairlines);
-		flowpane2.getChildren().add(btViewlistflights);
+		flowpane2.getChildren().add(btShowPlace);
+		flowpane2.getChildren().add(btViewlistparties);
+		flowpane2.getChildren().add(btViewlistlocations);
 		flowpane2.getChildren().add(btmyreservations);
-		flowpane2.getChildren().add(btmypassenger);
+		flowpane2.getChildren().add(btmyguest);
 		flowpane2.getChildren().add(btConfirmeReservation);
 		flowpane2.getChildren().add(btMakeReservation);
 		flowpane2.getChildren().add(btCancelReservation);
@@ -156,13 +156,13 @@ public class userInterface extends Application {
 		makeReservation.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (makeReservation.isSelected()) {
-					btMakeReservation.setVisible(true);
-					btViewlistairlines.setVisible(false);
-					btShowAirPort.setVisible(false);
-					btViewlistflights.setVisible(false);
+				if (requestReservation.isSelected()) {
+					btRequestReservation.setVisible(true);
+					btViewlistparties.setVisible(false);
+					btShowPlace.setVisible(false);
+					btViewlistlocations.setVisible(false);
 					btmyreservations.setVisible(false);
-					btmypassenger.setVisible(false);
+					btmyguest.setVisible(false);
 					btConfirmeReservation.setVisible(false);
 					btCancelReservation.setVisible(false);
 					grid3.setVisible(true);
@@ -172,12 +172,12 @@ public class userInterface extends Application {
 						grid0.setVisible(true);
 					}
 				} else {
-					btMakeReservation.setVisible(false);
-					btViewlistairlines.setVisible(true);
-					btShowAirPort.setVisible(true);
-					btViewlistflights.setVisible(true);
+					btRequestReservation.setVisible(false);
+					btViewlistparties.setVisible(true);
+					btShowPlaces.setVisible(true);
+					btViewlistlocations.setVisible(true);
 					btmyreservations.setVisible(true);
-					btmypassenger.setVisible(true);
+					btmyguest.setVisible(true);
 					btConfirmeReservation.setVisible(true);
 					btCancelReservation.setVisible(true);
 					grid0.setVisible(false);
@@ -194,7 +194,7 @@ public class userInterface extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				if (agent.isSelected()) {
-					if (makeReservation.isSelected())
+					if (requestReservation.isSelected())
 						grid0.setVisible(true);
 				}
 			}
@@ -213,22 +213,22 @@ public class userInterface extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				if (!city.getText().trim().equals("") && deparAiro.getText().trim().equals("")) {
-					for (Airport airoport : dataSource.findAirportsByCity(city.getText()))
-						System.out.println(airoport);
+					for (Place place : dataSource.findPlaceByCity(city.getText()))
+						System.out.println(place);
 					System.out.println("##############################################################################");
 
 					return;
 				}
 
 				if (deparAiro.getText().trim().equals("")) {
-					for (Airport airoport : dataSource.findAllAirports())
-						System.out.println(airoport);
+					for (Place place : dataSource.findAllAirports())
+						System.out.println(place);
 					System.out.println("##############################################################################");
 
 				}
 
 				else {
-					System.out.println(dataSource.findAirportByAirportCode(deparAiro.getText()));
+					System.out.println(dataSource.findPlaceByPlaceCode(deparAiro.getText()));
 					System.out.println("##############################################################################");
 				}
 
@@ -239,8 +239,8 @@ public class userInterface extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				if (!deparAiro.getText().trim().equals("")) {
-					for (Airline airline : dataSource.findAirlinesByAirportCode(deparAiro.getText()))
-						System.out.println(airline);
+					for (Party party : dataSource.findPartiesByAirportCode(deparAiro.getText()))
+						System.out.println(party);
 					System.out.println("##############################################################################");
 
 				}
@@ -256,14 +256,14 @@ public class userInterface extends Application {
 					String date1 = date.getText();
 					LocalDate localDate = LocalDate.parse(date1);
 
-					List<FlightInstance> flightInstances = dataSource.findFlightsFromTo(deparAiro.getText(),
+					List<PartyInstance> partyInstances = dataSource.findLocationFromTo(deparAiro.getText(),
 							arrivAiro.getText(), localDate);
 
-					for (FlightInstance flight : flightInstances) {
-						System.out.println(flight);
+					for (PartyInstance location : partyInstances) {
+						System.out.println(location);
 					}
 
-					if (flightInstances.size() == 0) {
+					if (partyInstances.size() == 0) {
 						String msg = String.format("There is no any flight from %s to %s at %s ", deparAiro.getText(),
 								arrivAiro.getText(), localDate);
 						System.out.println(msg);
@@ -279,14 +279,14 @@ public class userInterface extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 
-				if (passenger.isSelected() && !id.getText().trim().equals("")) {
-					for (Reservation reservation : dataSource.findReservationsByPassengerId(id.getText()))
+				if (guest.isSelected() && !id.getText().trim().equals("")) {
+					for (Reservation reservation : dataSource.findReservationsByGuestId(id.getText()))
 						System.out.println(reservation);
 					System.out.println("##############################################################################");
 				}
 
-				if (agent.isSelected() && !id.getText().trim().equals("")) {
-					for (Reservation reservation : dataSource.findReservationsByAgentId(id.getText()))
+				if (host.isSelected() && !id.getText().trim().equals("")) {
+					for (Reservation reservation : dataSource.findReservationsByHostId(id.getText()))
 						System.out.println(reservation);
 					System.out.println("##############################################################################");
 				}
@@ -294,18 +294,18 @@ public class userInterface extends Application {
 			}
 		});
 ///////////////////////////////////////////////////
-		btmypassenger.setOnAction(new EventHandler<ActionEvent>() {
+		btmyguest.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (agent.isSelected() && !id.getText().trim().equals("")) {
-					for (Passenger passenger : dataSource.findPassengersByAgentCode(id.getText()))
-						System.out.println(passenger);
+				if (host.isSelected() && !id.getText().trim().equals("")) {
+					for (Guest guest : dataSource.findGuestByAgentCode(id.getText()))
+						System.out.println(guest);
 					System.out.println("##############################################################################");
 				}
 			}
 		});
 		///////////////////////////////////////////////////
-		btMakeReservation.setOnAction(new EventHandler<ActionEvent>() {
+		btRequestReservation.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				if (!deparAiro.getText().trim().equals("") && !arrivAiro.getText().trim().equals("")
@@ -316,22 +316,22 @@ public class userInterface extends Application {
 					String date1 = date.getText();
 					LocalDate localDate = LocalDate.parse(date1);
 
-					List<FlightInstance> flightInstances = dataSource.findFlightsFromTo(departure, arrival, localDate);
+					List<PartyInstance> partyInstances = dataSource.findLocationFromTo(departure, arrival, localDate);
 
-					if (flightInstances.size() == 0) {
+					if (partyInstances.size() == 0) {
 						String msg = String.format("Can not make find flight from %s to %s at %s ", departure, arrival,
 								localDate);
 						System.out.println(msg);
 						return;
 					}
 
-					if (agent.isSelected() && !id.getText().trim().equals("") && !idPass.getText().trim().equals("")) {
+					if (host.isSelected() && !id.getText().trim().equals("") && !idPass.getText().trim().equals("")) {
 						Reservation reservation = dataSource.createReservation(id.getText(), idPass.getText(),
-								flightInstances);
+								partyInstances);
 						System.out.println(reservation);
 					}
-					if (passenger.isSelected() && !id.getText().trim().equals("")) {
-						Reservation reservation = dataSource.createReservation(id.getText(), flightInstances);
+					if (guest.isSelected() && !id.getText().trim().equals("")) {
+						Reservation reservation = dataSource.createReservation(id.getText(), partyInstances);
 						System.out.println(reservation);
 					}
 
@@ -358,12 +358,12 @@ public class userInterface extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				if (!reservationCode.getText().trim().equals("")) {
-					List<Ticket> var = dataSource.confirmReservation(reservationCode.getText());
+					List<Pass> var = dataSource.confirmReservation(reservationCode.getText());
 					if (var.size() == 0)
 						System.out.println("the reservation not Found");
 					else
-						for (Ticket ticket : var)
-							System.out.println(ticket);
+						for (Pass pass : var)
+							System.out.println(pass);
 					System.out.println("##############################################################################");
 				}
 			}
