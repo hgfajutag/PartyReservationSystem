@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="object.Ticket" project="ProjectMPPv1" file="/ProjectMPPv1/src/object/Ticket.java" 
+  <class id="1" language="java" name="object.Pass" project="ProjectMPPv1" file="/ProjectMPPv1/src/object/Pass.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1400" y="1294"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="object.FlightInstance" project="ProjectMPPv1" 
-    file="/ProjectMPPv1/src/object/FlightInstance.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="object.PartyInstance" project="ProjectMPPv1" 
+    file="/ProjectMPPv1/src/object/PartyInstance.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1860" y="938"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="object.Agent" project="ProjectMPPv1" file="/ProjectMPPv1/src/object/Agent.java" 
+  <class id="5" language="java" name="object.Host" project="ProjectMPPv1" file="/ProjectMPPv1/src/object/Host.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="854" y="1706"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="object.Airline" project="ProjectMPPv1" 
-    file="/ProjectMPPv1/src/object/Airline.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="object.Place" project="ProjectMPPv1" 
+    file="/ProjectMPPv1/src/object/Place.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="746" y="146"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +55,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="object.Airport" project="ProjectMPPv1" 
-    file="/ProjectMPPv1/src/object/Airport.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="object.Location" project="ProjectMPPv1" 
+    file="/ProjectMPPv1/src/object/Location.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1384" y="434"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -73,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="object.Flight" project="ProjectMPPv1" file="/ProjectMPPv1/src/object/Flight.java" 
+  <class id="9" language="java" name="object.Party" project="ProjectMPPv1" file="/ProjectMPPv1/src/object/Party.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1984" y="160"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -82,8 +82,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="object.Passenger" project="ProjectMPPv1" 
-    file="/ProjectMPPv1/src/object/Passenger.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="object.Guest" project="ProjectMPPv1" 
+    file="/ProjectMPPv1/src/object/Guest.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="836" y="1240"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -91,7 +91,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="object.Person" project="ProjectMPPv1" file="/ProjectMPPv1/src/object/Person.java" 
+  <class id="11" language="java" name="object.User" project="ProjectMPPv1" file="/ProjectMPPv1/src/object/User.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="256" y="1976"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -109,8 +109,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="object.AirPortFactory" project="ProjectMPPv1" 
-    file="/ProjectMPPv1/src/object/AirPortFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="13" language="java" name="object.LocationFactory" project="ProjectMPPv1" 
+    file="/ProjectMPPv1/src/object/LocationFactory.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="268" y="2372"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -118,8 +118,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="object.FlightInstanceFactory" project="ProjectMPPv1" 
-    file="/ProjectMPPv1/src/object/FlightInstanceFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="14" language="java" name="object.PartyInstanceFactory" project="ProjectMPPv1" 
+    file="/ProjectMPPv1/src/object/PartyInstanceFactory.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="708" y="2376"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -136,8 +136,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="object.TicketFactory" project="ProjectMPPv1" 
-    file="/ProjectMPPv1/src/object/TicketFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="16" language="java" name="object.PassFactory" project="ProjectMPPv1" 
+    file="/ProjectMPPv1/src/object/PassFactory.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1744" y="2376"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -155,7 +155,7 @@
   </generalization>  
   <association id="19">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="20" name="flight"/>      
+      <attribute id="20" name="party"/>      
       <multiplicity id="21" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
@@ -163,7 +163,7 @@
   </association>  
   <association id="22">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="23" name="airlines"/>      
+      <attribute id="23" name="places"/>      
       <multiplicity id="24" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
@@ -171,7 +171,7 @@
   </association>  
   <association id="25">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="26" name="tickets"/>      
+      <attribute id="26" name="passs"/>      
       <multiplicity id="27" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
@@ -179,7 +179,7 @@
   </association>  
   <association id="28">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="29" name="flightsinstances"/>      
+      <attribute id="29" name="partysinstances"/>      
       <multiplicity id="30" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
@@ -187,7 +187,7 @@
   </association>  
   <association id="31">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="32" name="flightinstance"/>      
+      <attribute id="32" name="partyinstance"/>      
       <multiplicity id="33" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
@@ -195,7 +195,7 @@
   </association>  
   <association id="34">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="35" name="tickets"/>      
+      <attribute id="35" name="passs"/>      
       <multiplicity id="36" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
@@ -223,7 +223,7 @@
   </association>  
   <association id="44">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="45" name="flights"/>      
+      <attribute id="45" name="partys"/>      
       <multiplicity id="46" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
@@ -231,7 +231,7 @@
   </association>  
   <association id="47">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="48" name="tickets"/>      
+      <attribute id="48" name="passs"/>      
       <multiplicity id="49" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
@@ -247,7 +247,7 @@
   </association>  
   <association id="53">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="54" name="airports"/>      
+      <attribute id="54" name="locations"/>      
       <multiplicity id="55" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
@@ -255,7 +255,7 @@
   </association>  
   <association id="56">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="57" name="passenger"/>      
+      <attribute id="57" name="guest"/>      
       <multiplicity id="58" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
@@ -279,7 +279,7 @@
   </association>  
   <association id="65">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="66" name="flightlist"/>      
+      <attribute id="66" name="partylist"/>      
       <multiplicity id="67" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
@@ -291,7 +291,7 @@
   </generalization>  
   <association id="69">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="70" name="flights"/>      
+      <attribute id="70" name="partys"/>      
       <multiplicity id="71" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
@@ -307,7 +307,7 @@
   </association>  
   <association id="75">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="76" name="agent"/>      
+      <attribute id="76" name="host"/>      
       <multiplicity id="77" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
@@ -315,7 +315,7 @@
   </association>  
   <association id="78">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="79" name="arrivalAirport"/>      
+      <attribute id="79" name="arrivalLocation"/>      
       <multiplicity id="80" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
@@ -323,7 +323,7 @@
   </association>  
   <association id="81">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="82" name="flightlist"/>      
+      <attribute id="82" name="partylist"/>      
       <multiplicity id="83" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
@@ -339,7 +339,7 @@
   </association>  
   <association id="87">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="88" name="passenger"/>      
+      <attribute id="88" name="guest"/>      
       <multiplicity id="89" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
@@ -347,7 +347,7 @@
   </association>  
   <association id="90">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="91" name="departureAirport"/>      
+      <attribute id="91" name="departureLocation"/>      
       <multiplicity id="92" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    

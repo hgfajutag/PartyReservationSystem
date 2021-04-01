@@ -23,7 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import object.Address;
-import object.Agent;
+import object.Host;
 
 public class Login extends Application {
 
@@ -33,7 +33,6 @@ public class Login extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		
 		primaryStage.setTitle("Reservation System LOGIN");
 		
 		primaryStage.getIcons().add(new Image("/ui/icon.png"));
@@ -86,7 +85,7 @@ public class Login extends Application {
 
 					Connection k = ConnectionDB.conn(); 
 					Statement stmt6=k.createStatement(); 
-					ResultSet p=stmt6.executeQuery("select 	typeofperson FROM person WHERE email ='"+usermail+"' and password='"+password+"'");  
+					ResultSet p=stmt6.executeQuery("select 	typeofusers FROM users WHERE email ='"+usermail+"' and password='"+password+"'");  
 
 					while(p.next()) {  
 						usertype = p.getString(1);
@@ -97,25 +96,21 @@ public class Login extends Application {
 				}
 
 				
-				
-//				 keys and values (Username, Password)
-//				passanger  => Email : hannap_12@gmail.com   Passwrod : 12
-//				agent      => Email : ayoub_12@gmail.com	Passwrod : 12
-//				admin      => Email : alba_12@gmail.com	    Passwrod : 12
-// testing my branch
-				
-				
-				
+//				 keys and values (Username, Password, id)
+//				guest: 	hannap_12@gmail.com  -  12  - id 1 - CCH - - 2021-03-02
+//				host:		ayoub_12@gmail.com	   12
+//				admin		alba_12@gmail.com	   12
+
 				if (usertype.equals(""))
 					actiontarget.setText("Invalid Input!");
 				else if (usertype.equals("ADMIN")) {
 					new userInterfaceADMIN().start(new Stage());
 					primaryStage.close();
-				} else if (usertype.equals("PASSENGER")) {
-					new userInterfacePASSENGER().start(new Stage());
+				} else if (usertype.equals("GUEST")) {
+					new userInterfaceGUEST().start(new Stage());
 					primaryStage.close();
-				} else if (usertype.equals("AGENT")) {
-					new userInterfaceAGENT().start(new Stage());
+				} else if (usertype.equals("HOST")) {
+					new userInterfaceHOST().start(new Stage());
 					primaryStage.close();
 				}
 				actiontarget.setText("Invalid Input!");

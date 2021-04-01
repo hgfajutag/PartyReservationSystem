@@ -9,57 +9,57 @@ import java.util.Random;
 
 import dbcon.ConnectionDB;
 import object.Address;
-import object.AirPortFactory;
-import object.Airline;
-import object.Airport;
-import object.Crew;
-import object.Flight;
-import object.FlightInstance;
-import object.FlightInstanceFactory;
-import object.Guest;
 import object.Host;
+import object.LocationFactory;
+import object.Place;
+import object.Location;
+import object.Crew;
+import object.Party;
+import object.PartyInstance;
+import object.PartyInstanceFactory;
+import object.Guest;
 import object.Pilot;
 import object.Reservation;
 import object.ReservationFactory;
-import object.Ticket;
+import object.Pass;
 import java.sql.*; 
 
 public class DataSource {
 
-	private List<Airline> _airlines = new ArrayList<>();
-	private List<Airport> _airports = new ArrayList<>();
+	private List<Place> _places = new ArrayList<>();
+	private List<Location> _locations = new ArrayList<>();
 	private List<Reservation> _reservations = new ArrayList<>();
 	private List<Pilot> _pilots = new ArrayList<>();
 	private List<Crew> _crew = new ArrayList<>();
-	private List<Host> _agents = new ArrayList<>();
-	private List<Guest> _passengers = new ArrayList<>();
+	private List<Host> _hosts = new ArrayList<>();
+	private List<Guest> _guests = new ArrayList<>();
 	
-	private List<Ticket> _tickets = new ArrayList<>();
+	private List<Pass> _passs = new ArrayList<>();
 	
-	private List<FlightInstance> _flightInstances = new ArrayList<>();
-	private List<Flight> _flights = new ArrayList<>();
+	private List<PartyInstance> _partyInstances = new ArrayList<>();
+	private List<Party> _partys = new ArrayList<>();
 	
 	DataSource() {		
-		createAirline();
+		createPlace();
 	}
 	
-	private void createAirline() {
+	private void createPlace() {
 		
 		//String id, String code, String name, String history
 		try {
 			Connection n = ConnectionDB.conn(); 
 			Statement stmt=n.createStatement();  
-			ResultSet rs=stmt.executeQuery("select * from airline limit 3");  
+			ResultSet rs=stmt.executeQuery("select * from place limit 3");  
 			//ConnectionDB.close(n);
 			while(rs.next()) {  
 				String id = String.valueOf(rs.getInt(1));
-				this._airlines.add(new Airline(id , rs.getString(2), rs.getString(3), rs.getString(4)));
+				this._places.add(new Place(id , rs.getString(2), rs.getString(3), rs.getString(4)));
 			}
 		}catch(SQLException e) {
 			System.out.println(e);
 		}
 		
-		this._airports = createAirport();		
+		this._locations = createLocation();		
 		int[][] idx = new int[3][2];
 		idx[0][0] = 0;
 		idx[0][1] = 1;
@@ -70,110 +70,101 @@ public class DataSource {
 		idx[2][0] = 0;
 		idx[2][1] = 2;		
 		int countX = 0;
-		for (Airport airport : this._airports) {			
-			AirPortFactory.buildAirPort(airport, Arrays.asList(this._airlines.get(idx[countX][0]), this._airlines.get(idx[countX][1])));			
+		for (Location location : this._locations) {			
+			LocationFactory.buildLocation(location, Arrays.asList(this._places.get(idx[countX][0]), this._places.get(idx[countX][1])));			
 			countX++;
 		}
 		
-		this._flights = createFlights(this._airports);
+		this._partys = createPartys(this._locations);
 		
 		this._pilots = createPilots();
 		this._crew = createCrews();				
-		this._agents = createAgents();
+		this._hosts = createHosts();
 		
-		this._passengers = createPassengers();		
-		this._tickets = createTickets(this._passengers);		
+		this._guests = createGuests();		
+		this._passs = createPasss(this._guests);		
 		
 		
-		this._flightInstances = createFlightInstaces(this._flights.get(0), this._flights.get(1));
-		for (FlightInstance flightInstance : this._flightInstances) {
-			FlightInstanceFactory.buildAFlightInstance(flightInstance, this._pilots, this._crew);
+		this._partyInstances = createPartyInstaces(this._partys.get(0), this._partys.get(1));
+		for (PartyInstance partyInstance : this._partyInstances) {
+			PartyInstanceFactory.buildAPartyInstance(partyInstance, this._pilots, this._crew);
 		}
 		
 		this._reservations = createReservations();
 		int count = 0;
 		for (Reservation reservation : this._reservations) {
-			ReservationFactory.buildAReservation(reservation, this._passengers.get(count), this._agents.get(count), this._flightInstances);
+			ReservationFactory.buildAReservation(reservation, this._guests.get(count), this._hosts.get(count), this._partyInstances);
 			count++;
 		}
 		
 	}
 	
 	
-	private List<Airport> createAirport() {
-		List<Airport> airports = new ArrayList<Airport>();
+	private List<Location> createLocation() {
+		List<Location> locations = new ArrayList<Location>();
 
 		try {
 
 			Connection n = ConnectionDB.conn(); 
 			Statement stmt=n.createStatement(); 
-			ResultSet ai=stmt.executeQuery("select a.id, a.code, a.name, ad.id, ad.street, ad.city, ad.state, ad.zip FROM airport a INNER JOIN address ad ON a.addressid=ad.id limit 3");  
+			ResultSet ai=stmt.executeQuery("select a.id, a.code, a.name, ad.id, ad.street, ad.city, ad.state, ad.zip FROM location a INNER JOIN address ad ON a.addressid=ad.id limit 3");  
 	
 			while(ai.next()) {  
 				String aiId = String.valueOf(ai.getInt(1));
 				String adId2 = String.valueOf(ai.getInt(4));
-				airports.add(new Airport(aiId, ai.getString(2), ai.getString(3), new Address(adId2, ai.getString(5), ai.getString(6), ai.getString(7), ai.getString(8))));
+				locations.add(new Location(aiId, ai.getString(2), ai.getString(3), new Address(adId2, ai.getString(5), ai.getString(6), ai.getString(7), ai.getString(8))));
 			}
 		}catch(SQLException e) {
 			System.out.println(e);
 		}
 		
-		return airports;
+		return locations;
 	}
 	
-	private List<Flight> createFlights(List<Airport> airports) {
-		List<Flight> flights = new ArrayList<Flight>();
+	private List<Party> createPartys(List<Location> locations) {
+		List<Party> partys = new ArrayList<Party>();
 		try {
-			Airport departureAirpot = null;
-			Airport arrivalAirpot = null;
+			Location strLocation = null;
 			Connection n = ConnectionDB.conn(); 
 			Statement stmt=n.createStatement(); 
-			ResultSet fl=stmt.executeQuery("select * FROM flight");
+			ResultSet fl=stmt.executeQuery("select * FROM party");
 			//ConnectionDB.close(n);
 			while(fl.next()) {  
 				String aiId = String.valueOf(fl.getInt(1));
-				int departureid = fl.getInt(6);
-				int arrivalid = fl.getInt(7);
+				int strlocationid = fl.getInt(6);
  
 				Statement stmt2=n.createStatement(); 
-				ResultSet airp1=stmt2.executeQuery("select a.id, a.code, a.name, ad.id, ad.street, ad.city, ad.state, ad.zip FROM airport a INNER JOIN address ad ON a.addressid=ad.id  WHERE a.id = '"+departureid+"'");
+				ResultSet airp1=stmt2.executeQuery("select a.id, a.code, a.name, ad.id, ad.street, ad.city, ad.state, ad.zip FROM location a INNER JOIN address ad ON a.addressid=ad.id  WHERE a.id = '"+strlocationid+"'");
 				
-
-				Statement stmt3=n.createStatement(); 
-				ResultSet airp2=stmt3.executeQuery("select a.id, a.code, a.name, ad.id, ad.street, ad.city, ad.state, ad.zip FROM airport a INNER JOIN address ad ON a.addressid=ad.id  WHERE a.id = '"+arrivalid+"'");  
-			
 				while(airp1.next()) {
 					String aiId1 = String.valueOf(airp1.getInt(1));
 					String adId2 = String.valueOf(airp1.getInt(4));
-					departureAirpot = new Airport(aiId1, airp1.getString(2), airp1.getString(3), new Address(adId2, airp1.getString(5), airp1.getString(6), airp1.getString(7), airp1.getString(8)));
+					strLocation = new Location(aiId1, airp1.getString(2), airp1.getString(3), new Address(adId2, airp1.getString(5), airp1.getString(6), airp1.getString(7), airp1.getString(8)));
 					}
 
-				while(airp2.next()) {
-					String aiId1 = String.valueOf(airp2.getInt(1));
-					String adId2 = String.valueOf(airp2.getInt(4));
-					arrivalAirpot = new Airport(aiId1, airp2.getString(2), airp2.getString(3), new Address(adId2, airp2.getString(5), airp2.getString(6), airp2.getString(7), airp2.getString(8)));
-					}
-				flights.add(new Flight(aiId, fl.getString(2), fl.getInt(3),  fl.getDate(4).toLocalDate(), fl.getDate(5).toLocalDate(), departureAirpot, arrivalAirpot));
+				partys.add(new Party(aiId, fl.getString(2), fl.getInt(3),  fl.getDate(4).toLocalDate(), fl.getDate(5).toLocalDate(), strLocation));
+
+				
 			}
 		}catch(SQLException e) {
 			System.out.println(e);
 		}
-		
-		System.out.println(flights);
-		return flights;
+		System.out.println(partys);
+		//System.out.println(partys);
+		return partys;
 	}
 	
-	private List<FlightInstance> createFlightInstaces(Flight flight1, Flight flight2) {
+	private List<PartyInstance> createPartyInstaces(Party party1, Party party2) {
 		
-		List<FlightInstance> res = new ArrayList<FlightInstance>();		
+		List<PartyInstance> res = new ArrayList<PartyInstance>();		
 		
 
 		
-		FlightInstance f1 = new FlightInstance("FI1", flight1, LocalDate.now());
+		PartyInstance f1 = new PartyInstance("FI1", party1, LocalDate.now());
 		res.add(f1);
 		
 		
-		FlightInstance f2 = new FlightInstance("FI2", flight2, LocalDate.now());
+		PartyInstance f2 = new PartyInstance("FI2", party2, LocalDate.now());
 		res.add(f2);
 		
 		return res;
@@ -186,7 +177,7 @@ public class DataSource {
 
 			Connection k = ConnectionDB.conn(); 
 			Statement stmt6=k.createStatement(); 
-			ResultSet p=stmt6.executeQuery("select p.id, p.firstName,p.lastName, p.email, p.dateOfbirth, ad.id, ad.street, ad.city, ad.state, ad.zip FROM person p INNER JOIN address ad  ON p.addressId = ad.id WHERE p.typeofperson = 'AGENT' limit 4");  
+			ResultSet p=stmt6.executeQuery("select p.id, p.firstName,p.lastName, p.email, p.dateOfbirth, ad.id, ad.street, ad.city, ad.state, ad.zip FROM users p INNER JOIN address ad  ON p.addressId = ad.id WHERE p.typeofusers = 'HOST' limit 4");  
 
 			while(p.next()) {  
 				String aiId = String.valueOf(p.getInt(1));
@@ -207,7 +198,7 @@ public class DataSource {
 
 			Connection k = ConnectionDB.conn(); 
 			Statement stmt6=k.createStatement(); 
-			ResultSet p=stmt6.executeQuery("select p.id, p.firstName,p.lastName, p.email, p.dateOfbirth, ad.id, ad.street, ad.city, ad.state, ad.zip FROM person p INNER JOIN address ad  ON p.addressId = ad.id WHERE p.typeofperson = 'AGENT' limit 4");  
+			ResultSet p=stmt6.executeQuery("select p.id, p.firstName,p.lastName, p.email, p.dateOfbirth, ad.id, ad.street, ad.city, ad.state, ad.zip FROM users p INNER JOIN address ad  ON p.addressId = ad.id WHERE p.typeofusers = 'HOST' limit 4");  
 
 			while(p.next()) {  
 				String aiId = String.valueOf(p.getInt(1));
@@ -222,14 +213,14 @@ public class DataSource {
 	}
 	
 	
-	private List<Host> createAgents() {		
+	private List<Host> createHosts() {		
 		List<Host> res = new ArrayList<Host>();
 
 		try {
 
 			Connection k = ConnectionDB.conn(); 
 			Statement stmt6=k.createStatement(); 
-			ResultSet p=stmt6.executeQuery("select p.id, p.firstName,p.lastName, p.email, p.dateOfbirth, ad.id, ad.street, ad.city, ad.state, ad.zip FROM person p INNER JOIN address ad  ON p.addressId = ad.id WHERE p.typeofperson = 'AGENT' limit 4");  
+			ResultSet p=stmt6.executeQuery("select p.id, p.firstName,p.lastName, p.email, p.dateOfbirth, ad.id, ad.street, ad.city, ad.state, ad.zip FROM users p INNER JOIN address ad  ON p.addressId = ad.id WHERE p.typeofusers = 'HOST' limit 4");  
 
 			while(p.next()) {  
 				String aiId = String.valueOf(p.getInt(1));
@@ -256,14 +247,14 @@ public class DataSource {
 		return res;
 	}
 	
-	private List<Guest> createPassengers() {		
+	private List<Guest> createGuests() {		
 		List<Guest> res = new ArrayList<Guest>();
 		
 		try {
 
 			Connection k = ConnectionDB.conn(); 
 			Statement stmt6=k.createStatement(); 
-			ResultSet p=stmt6.executeQuery("select p.id, p.firstName,p.lastName, p.email, p.dateOfbirth, ad.id, ad.street, ad.city, ad.state, ad.zip FROM person p INNER JOIN address ad  ON p.addressId = ad.id WHERE p.typeofperson = 'PASSENGER' limit 4");  
+			ResultSet p=stmt6.executeQuery("select p.id, p.firstName,p.lastName, p.email, p.dateOfbirth, ad.id, ad.street, ad.city, ad.state, ad.zip FROM users p INNER JOIN address ad  ON p.addressId = ad.id WHERE p.typeofusers = 'GUEST' limit 4");  
 
 			while(p.next()) {  
 				String aiId = String.valueOf(p.getInt(1));
@@ -278,14 +269,14 @@ public class DataSource {
 	}
 	
 	
-	private List<Ticket> createTickets(List<Guest> passengers) {
-		List<Ticket> tickets = new ArrayList<Ticket>();
-		for (Guest p : passengers) {
-			Ticket ticket = new Ticket(p);
-			tickets.add(ticket);
+	private List<Pass> createPasss(List<Guest> guests) {
+		List<Pass> passs = new ArrayList<Pass>();
+		for (Guest p : guests) {
+			Pass pass = new Pass(p);
+			passs.add(pass);
 		}
 		
-		return tickets;
+		return passs;
 	}
 	
 	
@@ -303,12 +294,12 @@ public class DataSource {
 
 	
 	
-	public List<Airline> getAirlines() {
-		return _airlines;
+	public List<Place> getPlaces() {
+		return _places;
 	}
 
-	public List<Airport> getAirports() {
-		return _airports;
+	public List<Location> getLocations() {
+		return _locations;
 	}
 
 	public List<Reservation> getReservations() {
@@ -323,25 +314,25 @@ public class DataSource {
 	 * public List<Crew> getCrew() { return _crew; }
 	 */
 
-	public List<Host> getAgents() {
-		return _agents;
+	public List<Host> getHosts() {
+		return _hosts;
 	}
 
-	public List<Guest> getPassengers() {
-		return _passengers;
+	public List<Guest> getGuests() {
+		return _guests;
 	}
 
 	/*
-	 * public List<Ticket> getTickets() { return _tickets; }
+	 * public List<Pass> getPasss() { return _passs; }
 	 */
 
 
-	 public List<FlightInstance> getFlightInstances() { return _flightInstances; }
+	 public List<PartyInstance> getPartyInstances() { return _partyInstances; }
 	 
 
-	/*
-	 * public List<Flight> getFlights() { return this._flights; }
-	 */
+	
+	 public List<Party> getPartys() { return this._partys; }
+	 
 	
 	
 	

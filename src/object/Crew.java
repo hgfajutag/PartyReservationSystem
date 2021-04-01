@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Crew extends Person {
+public class Crew extends User {
 	private float salary;
-	private List<PartyInstance> Partylist = new ArrayList<>();
+	private List<PartyInstance> partylist = new ArrayList<>();
 	
 	public Crew(String id, String firstName, String lastName, String email, LocalDate dateOfbirth, Address address,
 			float salary) {
@@ -23,15 +23,15 @@ public class Crew extends Person {
 	}
 
 	public List<PartyInstance> getPartylist() {
-		return Partylist;
+		return partylist;
 	}
 
-	public void setPartylist(List<PartyInstance> Partylist) {
-		this.Partylist = Partylist;
+	public void setPartylist(List<PartyInstance> partylist) {
+		this.partylist = partylist;
 	}
 	
-	public void addPartyInstance(PartyInstance PartyInstance) {
-		this.Partylist.add(PartyInstance);
+	public void addPartyInstance(PartyInstance partyInstance) {
+		this.partylist.add(partyInstance);
 	}
 	
 	@Override

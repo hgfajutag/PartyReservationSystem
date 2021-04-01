@@ -24,11 +24,6 @@ public class Host extends User {
 	public void addReservation(Reservation reservation) {
 		reservations.add(reservation);
 	}
-
-	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 
 }

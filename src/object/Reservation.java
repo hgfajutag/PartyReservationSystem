@@ -9,8 +9,8 @@ public class Reservation {
 	private Guest guest;
 	private Host host;
 	private boolean confirmed=false;
-	private List<PartyInstance> partyinstances = new ArrayList<PartyInstance>();
-	private List<Pass> passes = new ArrayList<Pass>();
+	private List<PartyInstance> partysinstances = new ArrayList<PartyInstance>();
+	private List<Pass> passs = new ArrayList<Pass>();
 	
 	public Reservation() {
 		this.reservationCode = UUID.randomUUID().toString();
@@ -32,40 +32,40 @@ public class Reservation {
 		this.reservationCode = reservationCode;
 	}
 
-	public Guest getguest() {
+	public Guest getGuest() {
 		return guest;
 	}
 
-	public void setguest(Guest guest) {
+	public void setGuest(Guest guest) {
 		this.guest = guest;
 	}
 
-	public Host gethost() {
+	public Host getHost() {
 		return host;
 	}
 
-	public void sethosts(Host host) {
+	public void setHosts(Host host) {
 		this.host = host;
 	}
 
-	public List<PartyInstance> getpartyinstances() {
-		return partyinstances;
+	public List<PartyInstance> getPartysinstances() {
+		return partysinstances;
 	}
 
-	public void setpartyinstances(List<PartyInstance> partyinstances) {
-		this.partyinstances = partyinstances;
+	public void setPartysinstances(List<PartyInstance> partysinstances) {
+		this.partysinstances = partysinstances;
 	}
 
-	public List<Pass> getPasses() {
-		return passes;
+	public List<Pass> getPasss() {
+		return passs;
 	}
 
 	public void addPass(Pass pass) {
-		this.passes.add(pass);
+		this.passs.add(pass);
 	}
 	
-	public void addPartyInstance(PartyInstance PartyInstance) {
-		this.partyinstances.add(PartyInstance);
+	public void addPartyInstance(PartyInstance partyInstance) {
+		this.partysinstances.add(partyInstance);
 	}
 	
 	@Override
