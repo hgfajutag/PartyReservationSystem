@@ -4,29 +4,29 @@ import java.time.LocalDate;
 import java.util.List;
 
 import object.Host;
-import object.Party; //Airline
-import object.Place; //Aiport
-import object.PartyInstance; //PartyInstance
+import object.Place;
+import object.Location;
+import object.PartyInstance;
 import object.Guest;
 import object.Reservation;
 import object.Pass;
 
 public interface ReservationSystemFacade {
 	
-	List<Place> findAllPlaces();	
-	Place findPlaceByPlaceCode(String PlaceCode);
+	List<Location> findAllLocations();	
+	Location findLocationByLocationCode(String locationCode);
 	
 	
-	List<Place> findPlacesByCity(String city); // Place(s) of a city, e.g. Chicago has two major Places	
-	List<Party> findPartysByPlaceCode(String PlaceCode);
+	List<Location> findLocationsByCity(String city); // Location(s) of a city, e.g. Chicago has two major locations	
+	List<Place> findPlacesByLocationCode(String locationCode);
 	
-	List<PartyInstance> findLocationsFromTo(String departurePlaceCode, String arrivalPlaceCode, LocalDate date);	
+	List<PartyInstance> findPartysFromTo(String strLocationCode, LocalDate date);	
 	List<Reservation> findReservationsByGuestId(String guestId);
 	
-	List<Guest> findPassengersByHostCode(String hostCode);	
+	List<Guest> findGuestsByHostCode(String hostCode);	
 	
-	Reservation createReservation(String guest, List<PartyInstance> PartyInstances); // Guest reserves
-	Reservation createReservation(String host, String guest, List<PartyInstance> PartyInstances); // Host reserves
+	Reservation createReservation(String guest, List<PartyInstance> partyInstances); // Guest reserves
+	Reservation createReservation(String host, String guest, List<PartyInstance> partyInstances); // Host reserves
 	
 	List<Pass> confirmReservation(String reservationCode);	
 	boolean cancelReservation(String reservationCode);

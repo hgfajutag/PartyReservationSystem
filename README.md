@@ -40,7 +40,7 @@ https://www.eclipse.org/downloads
 - Import some addtional library there located on :
     /src/Additional/Library To Add
 - Open Xampp and Start Mysql 
-    Create Database Name airline_reservation_db 
+    Create Database Name place_reservation_db 
     Go to privilege and add user name systemuser , password rood and give him all Privileges .
 - In DB Go to Import and import Sql file from additional/DB.
     

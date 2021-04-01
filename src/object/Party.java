@@ -1,6 +1,6 @@
 package object;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class Party {
 
@@ -8,30 +8,26 @@ public class Party {
 	private String number;
 	private int capacity;
 	
-	private LocalTime departureTime;
-	private LocalTime arrivalTime;
+	private LocalDate startTime;
+	private LocalDate endTime;
 	
-	private Place departurePlace;
-	private Place arrivalPlace;
+	private Location strLocation;
 
 	public Party(String id, String number, int capacity, 
-			LocalTime departureTime, LocalTime arrivalTime,
-			Place departurePlace, 
-			Place arrivalPlace
+			LocalDate startTime, LocalDate endTime,
+			Location strLocation
 			) {
 		
 		this.id = id;
 		this.number = number;
 		this.capacity = capacity;
-		this.departureTime = departureTime;
-		this.arrivalTime = arrivalTime;
+		this.startTime = startTime;
+		this.endTime = endTime;
 		
-		this.departurePlace = departurePlace;
-		this.departurePlace.addParty(this);
+		this.strLocation = strLocation;
+		this.strLocation.addParty(this);
 		
 		
-		this.arrivalPlace = arrivalPlace;
-		this.arrivalPlace.addParty(this);
 	}
 
 	public String getId() {
@@ -58,50 +54,36 @@ public class Party {
 		this.capacity = capacity;
 	}
 
-	public LocalTime getDepartureTime() {
-		return departureTime;
+	public LocalDate getStartTime() {
+		return startTime;
 	}
 
-	public void setDepartureTime(LocalTime departureTime) {
-		this.departureTime = departureTime;
+	public void setStartTime(LocalDate startTime) {
+		this.startTime = startTime;
 	}
 
-	public LocalTime getArrivalTime() {
-		return arrivalTime;
+	public LocalDate getEndTime() {
+		return endTime;
 	}
 
-	public void setArrivalTime(LocalTime arrivalTime) {
-		this.arrivalTime = arrivalTime;
+	public void setEndTime(LocalDate endTime) {
+		this.endTime = endTime;
 	}
 
-	public Place getDeparturePlace() {
-		return departurePlace;
+	public Location getStrLocation() {
+		return strLocation;
 	}
 
-	public void setDeparturePlace(Place departurePlace) {
-		this.departurePlace = departurePlace;
+	public void setStrLocation(Location strLocation) {
+		this.strLocation = strLocation;
 		
-		departurePlace.addParty(this);
-	}
-
-	public Place getArrivalPlace() {
-		return arrivalPlace;
-	}
-
-	public void setArrivalPlace(Place arrivalPlace) {
-		this.arrivalPlace = arrivalPlace;
+		strLocation.addParty(this);
 	}
 
 	@Override
 	public String toString() {
-		return "Party [id=" + id + ", number=" + number + ", capacity=" + capacity + ", departureTime=" + departureTime
-				+ ", arrivalTime=" + arrivalTime + ", departurePlace=" + departurePlace + ", arrivalPlace="
-				+ arrivalPlace + "]";
-	}
-
-	public void addPlace(Place place) {
-		// TODO Auto-generated method stub
-		
+		return "Party [id=" + id + ", number=" + number + ", capacity=" + capacity + ", startTime=" + startTime
+				+ ", endTime=" + endTime + ", strLocation=" + strLocation + "]";
 	}
 	
 	

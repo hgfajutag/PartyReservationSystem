@@ -7,17 +7,17 @@ import java.util.List;
 public class PartyInstance {
 
 	private String id;
-	private Location locations;
+	private Party party;
 	private LocalDate date;
 	
 	private List<Crew> crew = new ArrayList<>();
 	private List<Pilot> pilots = new ArrayList<>();
 	private List<Reservation> reservations = new ArrayList<>();
-	private List<Pass> passes = new ArrayList<>();
+	private List<Pass> passs = new ArrayList<>();
 
-	public PartyInstance(String id, Location locations, LocalDate date) {	
+	public PartyInstance(String id, Party party, LocalDate date) {	
 		this.id = id;
-		this.locations = locations;
+		this.party = party;
 		this.date = date;
 	}
 	
@@ -30,12 +30,12 @@ public class PartyInstance {
 		this.id = id;
 	}
 	
-	public Location getlocations() {
-		return locations;
+	public Party getParty() {
+		return party;
 	}
 	
-	public void setlocations(Location locations) {
-		this.locations = locations;
+	public void setParty(Party party) {
+		this.party = party;
 	}
 	
 	public LocalDate getDate() {
@@ -70,18 +70,18 @@ public class PartyInstance {
 		this.reservations = reservations;
 	}
 	
-	public List<Pass> getPasses() {
-		return passes;
+	public List<Pass> getPasss() {
+		return passs;
 	}
 	
 	public void addPass(Pass pass) {
-		this.passes.add(pass);
+		this.passs.add(pass);
 	}
 
 
 	@Override
 	public String toString() {
-		return "PartyInstance [id=" + id + ", locations=" + locations + ", date=" + date + "]";
+		return "PartyInstance [id=" + id + ", party=" + party + ", date=" + date + "]";
 	}
 
 

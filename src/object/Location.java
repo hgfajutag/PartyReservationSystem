@@ -1,37 +1,22 @@
 package object;
 
-import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Location {
-
 	private String id;
-	private String number;
-	private int capacity;
+	private String code;
+	private String name;
+	private Address address;
 	
-	private LocalTime departureTime;
-	private LocalTime arrivalTime;
+	private List<Party> partys = new ArrayList<>();
+	private List<Place> places = new ArrayList<>();
 	
-	private Place departurePlace;
-	private Place arrivalPlace;
-
-	public Location(String id, String number, int capacity, 
-			LocalTime departureTime, LocalTime arrivalTime,
-			Place departurePlace, 
-			Place arrivalPlace
-			) {
-		
+	public Location(String id, String code, String name, Address address) {
 		this.id = id;
-		this.number = number;
-		this.capacity = capacity;
-		this.departureTime = departureTime;
-		this.arrivalTime = arrivalTime;
-		
-		this.departurePlace = departurePlace;
-		this.departurePlace.addLocation(this);
-		
-		
-		this.arrivalPlace = arrivalPlace;
-		this.arrivalPlace.addLocation(this);
+		this.code = code;
+		this.name = name;
+		this.address = address;
 	}
 
 	public String getId() {
@@ -42,62 +27,63 @@ public class Location {
 		this.id = id;
 	}
 
-	public String getNumber() {
-		return number;
+	public String getCode() {
+		return code;
 	}
 
-	public void setNumber(String number) {
-		this.number = number;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public int getCapacity() {
-		return capacity;
+	public String getName() {
+		return name;
 	}
 
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public LocalTime getDepartureTime() {
-		return departureTime;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setDepartureTime(LocalTime departureTime) {
-		this.departureTime = departureTime;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
-	public LocalTime getArrivalTime() {
-		return arrivalTime;
+	public List<Party> getPartys() {
+		return partys;
 	}
 
-	public void setArrivalTime(LocalTime arrivalTime) {
-		this.arrivalTime = arrivalTime;
+	public void setPartys(List<Party> partys) {
+		this.partys = partys;
 	}
 
-	public Place getDeparturePlace() {
-		return departurePlace;
+	public List<Place> getPlaces() {
+		return places;
 	}
 
-	public void setDeparturePlace(Place departurePlace) {
-		this.departurePlace = departurePlace;
-		
-		departurePlace.addLocation(this);
+	public void setPlaces(List<Place> places) {
+		this.places = places;
 	}
-
-	public Place getArrivalPlace() {
-		return arrivalPlace;
+	
+	public void addPlace(Place place) {
+		this.places.add(place);
 	}
-
-	public void setArrivalPlace(Place arrivalPlace) {
-		this.arrivalPlace = arrivalPlace;
+	
+	public void addParty(Party party) {
+		this.partys.add(party);
 	}
 
 	@Override
 	public String toString() {
-		return "Location [id=" + id + ", number=" + number + ", capacity=" + capacity + ", departureTime=" + departureTime
-				+ ", arrivalTime=" + arrivalTime + ", departurePlace=" + departurePlace + ", arrivalPlace="
-				+ arrivalPlace + "]";
-	}
+		return "Location [id=" + id + ", code=" + code + ", name=" + name + ", address=" + address + "]";
+	}	
+	
+	
+	
+	
+
 	
 	
 

@@ -5,27 +5,27 @@ import java.util.List;
 public class ReservationFactory {
 	
 	public static Reservation buildAReservation(Reservation reservation,
-			Guest guest,
+            Guest guest,
             Host host,
            
-            List<PartyInstance> PartyInstances           
+            List<PartyInstance> partyInstances           
             ) {
        
         //link reservation and guest
-        reservation.setguest(guest);
+        reservation.setGuest(guest);
         guest.addReservation(reservation);
        
         //link reservation and host
         if(host!=null) {
-        reservation.sethosts(host);
+        reservation.setHosts(host);
         host.addReservation(reservation); }      
        
         //link reservation and PartyInstance
-        reservation.setpartyinstances(PartyInstances);
+        reservation.setPartysinstances(partyInstances);
        
         //generate pass and link them all
-        for (PartyInstance PartyInstance : PartyInstances) {
-           PassFactory.buildPass(guest, reservation, PartyInstance);
+        for (PartyInstance partyInstance : partyInstances) {
+            PassFactory.buildPass(guest, reservation, partyInstance);
         }
        
        

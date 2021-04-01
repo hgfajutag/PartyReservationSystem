@@ -27,8 +27,8 @@
                   <Image url="@../../../../../Desktop/logoo.png" />
                </image>
             </ImageView>
-            <CheckBox layoutX="422.0" layoutY="128.0" mnemonicParsing="false" text="Passenger" />
-            <CheckBox layoutX="211.0" layoutY="128.0" mnemonicParsing="false" text="Agent" />
+            <CheckBox layoutX="422.0" layoutY="128.0" mnemonicParsing="false" text="Guest" />
+            <CheckBox layoutX="211.0" layoutY="128.0" mnemonicParsing="false" text="Host" />
             <CheckBox layoutX="311.0" layoutY="128.0" mnemonicParsing="false" text="Admin" />
             <CheckBox layoutX="289.0" layoutY="175.0" mnemonicParsing="false" text="Make Reservation" />
             <TextField layoutX="32.0" layoutY="247.0" />
@@ -43,11 +43,11 @@
             <Text layoutX="281.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date (YYYY-MM-DD) " />
             <TextField layoutX="281.0" layoutY="330.0" />
             <Text layoutX="281.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" />
-            <Button layoutX="146.0" layoutY="441.0" mnemonicParsing="false" text="View List of Airport" />
-            <Button layoutX="276.0" layoutY="378.0" mnemonicParsing="false" text="View List of Airline By airport" />
-            <Button layoutX="433.0" layoutY="441.0" mnemonicParsing="false" text="View List of Flight" />
+            <Button layoutX="146.0" layoutY="441.0" mnemonicParsing="false" text="View List of Location" />
+            <Button layoutX="276.0" layoutY="378.0" mnemonicParsing="false" text="View List of Place By location" />
+            <Button layoutX="433.0" layoutY="441.0" mnemonicParsing="false" text="View List of Party" />
             <Button layoutX="18.0" layoutY="378.0" mnemonicParsing="false" text="View list of my reservations" />
-            <Button layoutX="518.0" layoutY="378.0" mnemonicParsing="false" text="View list of passengers" />
+            <Button layoutX="518.0" layoutY="378.0" mnemonicParsing="false" text="View list of guests" />
             <Button layoutX="279.0" layoutY="504.0" mnemonicParsing="false" text="Confirm Reservation" />
             <Button layoutX="485.0" layoutY="496.0" mnemonicParsing="false" text="Cancel Resevation" />
             <Button layoutX="81.0" layoutY="496.0" mnemonicParsing="false" text="Make Resevation" />

@@ -5,22 +5,22 @@ import java.util.List;
 public class PartyInstanceFactory {
 	
 	public static PartyInstance buildAPartyInstance(
-            PartyInstance PartyInstance,
+            PartyInstance partyInstance,
            
             List<Pilot> pilots,
             List<Crew> crew
             ) {
        
-        PartyInstance.setPilot(pilots);
+        partyInstance.setPilot(pilots);
         for (Pilot pilot : pilots) {
-            pilot.addPartyInstance(PartyInstance);
+            pilot.addPartyInstance(partyInstance);
         }
        
-        PartyInstance.setCrew(crew);   
+        partyInstance.setCrew(crew);   
         for (Crew c : crew) {
-            c.addPartyInstance(PartyInstance);
+            c.addPartyInstance(partyInstance);
         }
        
-        return PartyInstance;
+        return partyInstance;
     }
 }
