@@ -37,7 +37,7 @@ public class userInterfaceGUEST extends Application {
 
 	TextField id = new TextField();
 	TextField idPass = new TextField();
-	TextField deparAiro = new TextField();
+	TextField strLoc = new TextField();
 	TextField arrivAiro = new TextField();
 	TextField date = new TextField();
 	TextField reservationCode = new TextField();
@@ -108,21 +108,12 @@ public class userInterfaceGUEST extends Application {
 /////////////////////////////////////////
 		GridPane grid1 = new GridPane();
 		grid1.setPadding(new Insets(7, 7, 7, 7));
-		grid1.add(new Text("Departure"), 0, 0);
-		grid1.add(deparAiro, 0, 1);
+		grid1.add(new Text("Location"), 0, 0);
+		grid1.add(strLoc, 0, 1);
 		grid1.setAlignment(Pos.CENTER);
 		grid1.setHgap(10);
 		grid1.setVgap(10);
 		grid1.setPadding(new Insets(25, 25, 25, 25));
-////////////////////////////////////////
-		GridPane grid2 = new GridPane();
-		grid2.setPadding(new Insets(7, 7, 7, 7));
-		grid2.add(new Text("Arrival"), 0, 0);
-		grid2.add(arrivAiro, 0, 1);
-		grid2.setAlignment(Pos.CENTER);
-		grid2.setHgap(10);
-		grid2.setVgap(10);
-		grid2.setPadding(new Insets(25, 25, 25, 25));
 ////////////////////////////////////////
 		GridPane grid3 = new GridPane();
 		grid3.setPadding(new Insets(7, 7, 7, 7));
@@ -159,7 +150,6 @@ public class userInterfaceGUEST extends Application {
 		flowpane1.getChildren().add(grid);
 		flowpane1.getChildren().add(grid0);
 		flowpane1.getChildren().add(grid1);
-		flowpane1.getChildren().add(grid2);
 		flowpane1.getChildren().add(grid3);
 		flowpane1.getChildren().add(grid4);
 		flowpane1.getChildren().add(gridC);
@@ -238,7 +228,7 @@ public class userInterfaceGUEST extends Application {
 		btShowLocation.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (!city.getText().trim().equals("") && deparAiro.getText().trim().equals("")) {
+				if (!city.getText().trim().equals("") && strLoc.getText().trim().equals("")) {
 					for (Location airoport : dataSource.findLocationsByCity(city.getText()))
 						System.out.println(airoport);
 					System.out
@@ -247,7 +237,7 @@ public class userInterfaceGUEST extends Application {
 					return;
 				}
 
-				if (deparAiro.getText().trim().equals("")) {
+				if (strLoc.getText().trim().equals("")) {
 					for (Location airoport : dataSource.findAllLocations())
 						System.out.println(airoport);
 					System.out
@@ -256,7 +246,7 @@ public class userInterfaceGUEST extends Application {
 				}
 
 				else {
-					System.out.println(dataSource.findLocationByLocationCode(deparAiro.getText()));
+					System.out.println(dataSource.findLocationByLocationCode(strLoc.getText()));
 					System.out
 							.println("##############################################################################");
 				}
@@ -267,8 +257,8 @@ public class userInterfaceGUEST extends Application {
 		btViewlistplaces.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (!deparAiro.getText().trim().equals("")) {
-					for (Place place : dataSource.findPlacesByLocationCode(deparAiro.getText()))
+				if (!strLoc.getText().trim().equals("")) {
+					for (Place place : dataSource.findPlacesByLocationCode(strLoc.getText()))
 						System.out.println(place);
 					System.out
 							.println("##############################################################################");
@@ -280,13 +270,13 @@ public class userInterfaceGUEST extends Application {
 		btViewlistpartys.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (!deparAiro.getText().trim().equals("") && !arrivAiro.getText().trim().equals("")
+				if (!strLoc.getText().trim().equals("") && !arrivAiro.getText().trim().equals("")
 						&& !date.getText().trim().equals("")) {
 
 					String date1 = date.getText();
 					LocalDate localDate = LocalDate.parse(date1);
 
-					List<PartyInstance> partyInstances = dataSource.findPartysFromTo(deparAiro.getText(),
+					List<PartyInstance> partyInstances = dataSource.findPartysFromTo(strLoc.getText(),
 							 localDate);
 
 					for (PartyInstance party : partyInstances) {
@@ -294,7 +284,7 @@ public class userInterfaceGUEST extends Application {
 					}
 
 					if (partyInstances.size() == 0) {
-						String msg = String.format("There is no any party from %s to %s at %s ", deparAiro.getText(),
+						String msg = String.format("There is no any party from %s to %s at %s ", strLoc.getText(),
 								arrivAiro.getText(), localDate);
 						System.out.println(msg);
 					}
@@ -326,18 +316,17 @@ public class userInterfaceGUEST extends Application {
 		btMakeReservation.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (!deparAiro.getText().trim().equals("") && !arrivAiro.getText().trim().equals("")
+				if (!strLoc.getText().trim().equals("") && !arrivAiro.getText().trim().equals("")
 						&& !date.getText().trim().equals("")) {
 
-					String departure = deparAiro.getText();
-					String arrival = arrivAiro.getText();
+					String strloc = strLoc.getText();
 					String date1 = date.getText();
 					LocalDate localDate = LocalDate.parse(date1);
 
-					List<PartyInstance> partyInstances = dataSource.findPartysFromTo(departure,  localDate);
+					List<PartyInstance> partyInstances = dataSource.findPartysFromTo(strloc,  localDate);
 
 					if (partyInstances.size() == 0) {
-						String msg = String.format("Can not make find party from %s to %s at %s ", departure, 
+						String msg = String.format("Can not make find party from %s to %s at %s ", strloc, 
 								localDate);
 						System.out.println(msg);
 						return;
