@@ -38,7 +38,7 @@ public class userInterfaceHOST extends Application {
 
 	TextField id = new TextField();
 	TextField idPass = new TextField();
-	TextField deparAiro = new TextField();
+	TextField strLoc = new TextField();
 	TextField arrivAiro = new TextField();
 	TextField date = new TextField();
 	TextField reservationCode = new TextField();
@@ -109,8 +109,8 @@ public class userInterfaceHOST extends Application {
 /////////////////////////////////////////
 		GridPane grid1 = new GridPane();
 		grid1.setPadding(new Insets(7, 7, 7, 7));
-		grid1.add(new Text("Departure"), 0, 0);
-		grid1.add(deparAiro, 0, 1);
+		grid1.add(new Text("strloc"), 0, 0);
+		grid1.add(strLoc, 0, 1);
 		grid1.setAlignment(Pos.CENTER);
 		grid1.setHgap(10);
 		grid1.setVgap(10);
@@ -230,7 +230,7 @@ public class userInterfaceHOST extends Application {
 		btShowLocation.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (!city.getText().trim().equals("") && deparAiro.getText().trim().equals("")) {
+				if (!city.getText().trim().equals("") && strLoc.getText().trim().equals("")) {
 					for (Location airoport : dataSource.findLocationsByCity(city.getText()))
 						System.out.println(airoport);
 					System.out
@@ -239,7 +239,7 @@ public class userInterfaceHOST extends Application {
 					return;
 				}
 
-				if (deparAiro.getText().trim().equals("")) {
+				if (strLoc.getText().trim().equals("")) {
 					for (Location airoport : dataSource.findAllLocations())
 						System.out.println(airoport);
 					System.out
@@ -248,7 +248,7 @@ public class userInterfaceHOST extends Application {
 				}
 
 				else {
-					System.out.println(dataSource.findLocationByLocationCode(deparAiro.getText()));
+					System.out.println(dataSource.findLocationByLocationCode(strLoc.getText()));
 					System.out
 							.println("##############################################################################");
 				}
@@ -259,8 +259,8 @@ public class userInterfaceHOST extends Application {
 		btViewlistplaces.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (!deparAiro.getText().trim().equals("")) {
-					for (Place place : dataSource.findPlacesByLocationCode(deparAiro.getText()))
+				if (!strLoc.getText().trim().equals("")) {
+					for (Place place : dataSource.findPlacesByLocationCode(strLoc.getText()))
 						System.out.println(place);
 					System.out
 							.println("##############################################################################");
@@ -272,20 +272,20 @@ public class userInterfaceHOST extends Application {
 		btViewlistpartys.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (!deparAiro.getText().trim().equals("") && !arrivAiro.getText().trim().equals("")
+				if (!strLoc.getText().trim().equals("") && !arrivAiro.getText().trim().equals("")
 						&& !date.getText().trim().equals("")) {
 
 					String date1 = date.getText();
 					LocalDate localDate = LocalDate.parse(date1);
 
-					List<PartyInstance> partyInstances = dataSource.findPartysFromTo(deparAiro.getText(), localDate);
+					List<PartyInstance> partyInstances = dataSource.findPartysFromTo(strLoc.getText(), localDate);
 
 					for (PartyInstance party : partyInstances) {
 						System.out.println(party);
 					}
 
 					if (partyInstances.size() == 0) {
-						String msg = String.format("There is no any party from %s to %s at %s ", deparAiro.getText(),
+						String msg = String.format("There is no any party from %s to %s at %s ", strLoc.getText(),
 								arrivAiro.getText(), localDate);
 						System.out.println(msg);
 					}
@@ -328,18 +328,17 @@ public class userInterfaceHOST extends Application {
 		btMakeReservation.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (!deparAiro.getText().trim().equals("") && !arrivAiro.getText().trim().equals("")
+				if (!strLoc.getText().trim().equals("") && !arrivAiro.getText().trim().equals("")
 						&& !date.getText().trim().equals("")) {
 
-					String departure = deparAiro.getText();
-					String arrival = arrivAiro.getText();
+					String strloc = strLoc.getText();
 					String date1 = date.getText();
 					LocalDate localDate = LocalDate.parse(date1);
 
-					List<PartyInstance> partyInstances = dataSource.findPartysFromTo(departure, localDate);
+					List<PartyInstance> partyInstances = dataSource.findPartysFromTo(strloc, localDate);
 
 					if (partyInstances.size() == 0) {
-						String msg = String.format("Can not make find party from %s to %s at %s ", departure, 
+						String msg = String.format("Can not make find party from %s to %s at %s ", strloc, 
 								localDate);
 						System.out.println(msg);
 						return;

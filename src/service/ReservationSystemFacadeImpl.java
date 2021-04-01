@@ -64,7 +64,7 @@ public class ReservationSystemFacadeImpl implements ReservationSystemFacade {
             LocalDate date)  
     {
         List<PartyInstance> res = new ArrayList<PartyInstance>();
-        for (PartyInstance partye : dataSource.getPartys()) {
+        for (PartyInstance partye : dataSource.getPartyInstances()) {
             String dep = partye.getParty().getStrLocation().getCode();
             LocalDate dateV=partye.getDate();
             
