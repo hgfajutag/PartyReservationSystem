@@ -9,7 +9,7 @@ public class ConnectionDB {
 		
 		Class.forName("com.mysql.jdbc.Driver");  
 		 con=DriverManager.getConnection(  
-		"jdbc:mysql://localhost:3306/party_reservation_db","root","");   
+		"jdbc:mysql://localhost:3306/party_reservation_db","root","1");   
 		
 	}
 		catch(Exception e){ System.out.println(e);
